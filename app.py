@@ -5,15 +5,12 @@ from nav import *
 from markdowncss import *
 from banco import tip
 
-if 'logout' not in st.session_state:
-    
-        st.session_state['logout'] = None
 
-if st.session_state['logout'] == 'True':
-    st.cache_data.clear()
-    st.cache_resource.clear()
 
-    st.session_state['logout'] = 'None'
+
+
+st.cache_data.clear()
+st.cache_resource.clear()
     
 
 
@@ -93,12 +90,6 @@ if 'name' not in st.session_state:
 if 'logout' not in st.session_state:
     
         st.session_state['logout'] = None
-
-if st.session_state['logout'] == 'True':
-    st.cache_data.clear()
-    st.cache_resource.clear()
-
-    st.session_state['logout'] = 'None'
 
 
 authenticator.login() 
