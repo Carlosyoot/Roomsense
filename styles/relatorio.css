@@ -1,0 +1,38 @@
+[class="user icon"]{
+    color: blue;
+}
+
+[class="calendar alternate outline icon"]{
+    color: blue;
+}
+
+[class="history icon"]{
+    color: blue;
+}
+
+[class="edit icon"]{
+    color: blue;
+} 
+[id="mydiv"][class="ui centered cards"]{
+    width: 150%;
+    height: 100%;
+    margin-left: -10rem;
+    gap: 0.2rem;
+    
+}
+
+[id="mydiv"][class="ui centered cards"]:hover > [class="card"]:hover {
+    
+    background-color: rgb(225, 227, 228);
+    /* Estilos aplicados aos elementos filhos quando o contêiner pai é hover */
+}
+
+[class="fc-toolbar-title"]{
+    color: blue;
+}
+
+.ui.card .meta, .ui.cards>.card .meta {
+    padding: 3px;
+    font-size: 16px;
+    color: rgb(0, 0, 0);    
+}

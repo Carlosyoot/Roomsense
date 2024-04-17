@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>Document</title>
+</head>
+<body>
+
+<div class="texto">
+ <h1>Que pena!</h1>
+  <p>Esperamos ter sua presença<br> nas próximas reuniões no RoomSense.</p>
+</div>
+
+<div class="img">
+  <img src="{{ url_for('static', filename='img.png') }}" alt="">
+</div>
+<footer>
+  <div class="footer-logo">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="">
+  </div>
+
+
+  <p>fortics &copy; 2024</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,148 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden; /* Remover espaço de rolagem horizontal */
+}
+
+h1 {
+  font-size: 4.6rem;
+  margin-bottom: 2rem;
+  font-family: "Carter One", system-ui;
+  font-weight: 800;
+  color: rgb(5, 59, 238);
+  margin-left: 10%;
+  margin-top: 6.6vh; 
+}
+
+p {
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-left: 11%;
+  font-family: "Carter One", system-ui;
+  font-weight: bold;
+}
+
+.img {
+  width: 50%;
+  float: right;
+  margin-top: -7rem; 
+}
+
+.img img {
+  max-width: 100%;
+  display: block;
+}
+
+.marca {
+  margin-left: 15em;
+  margin-top: 2vh;
+  height: 60px;
+  width: 60px;
+  opacity: 0.1;
+}
+
+/* Estilo do rodapé */
+footer {
+  background-color: #002E4E;
+  color: #fff;
+  text-align: center;
+  padding: 16.8px;
+  margin-top: 51rem;
+}
+
+.footer-logo {
+  margin-bottom: 20px;
+}
+
+.footer-logo img {
+  max-width: 100px;
+  align-items: center;
+}
+
+/* Estilo do texto de rodapé */
+footer p {
+  margin-right: 10%;
+  margin-top: -3vh;
+}
+
+/* Consulta de mídia para telas menores que 1024px */
+@media screen and (max-width: 1023px) {
+  h1 {
+    font-size: 3.2rem;
+    margin-left: 5%;
+    margin-top: 10vh; /* Alterado para unidade de viewport (vh) */
+  }
+
+  p {
+    font-size: 1.6rem;
+    margin-left: 5%;
+    margin-top: 1rem;
+  }
+
+  .img {
+    margin-top: -5rem;
+    margin-left: 5%;
+    width: 70%;
+    float: none;
+  }
+
+  footer {
+    margin-top: 20rem; /* Ajuste conforme necessário */
+  }
+}
+
+/* Consulta de mídia para telas menores que 768px */
+@media screen and (max-width: 767px) {
+  h1 {
+    font-size: 2.8rem;
+    margin-left: 5%;
+    margin-top: 15vh; /* Alterado para unidade de viewport (vh) */
+  }
+  p {
+    font-size: 1.4rem;
+    margin-left: 5%;
+    margin-top: 1rem;
+  }
+
+  .img {
+    margin-top: 0;
+    margin-left: 10%;
+    width: 80%;
+    float: none;
+  }
+
+  footer {
+    margin-top: 50rem; /* Ajuste conforme necessário */
+  }
+}
+
+/* Consulta de mídia para telas maiores que 1821px */
+@media screen and (min-width: 1822px) {
+  h1 {
+    font-size: 5.6rem;
+    margin-left: 9%;
+    margin-top: 8vh; /* Alterado para unidade de viewport (vh) */
+  }
+
+  p {
+    font-size: 2.2rem;
+    margin-left: 10%;
+    padding: auto;
+  }
+
+  .img {
+    margin-top: -7rem;
+    margin-right: -60%;
+    width: 100%;
+    float: right;
+  }
+
+  footer {
+    margin-top: 88rem; /* Ajuste conforme necessário */
+  }
+}

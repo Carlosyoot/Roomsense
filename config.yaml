@@ -1,0 +1,24 @@
+cookies:
+  expiry_days: 1
+  key: some_signature_key
+  name: some_cookie_name
+credentials:
+  usernames:
+    carlos.silva@fortics.com.br:
+      email: carlos.silva@fortics.com.br
+      logged: 0
+      name: Carlos Silva
+      password: '123'
+      permission: User
+    carlosdanielyoot@gmail.com:
+      email: carlosdanielyoot@gmail.com
+      logged: 'false'
+      name: carlosyoot
+      password: '123'
+      permission: Admin
+    gustavo.bassegio@fortics.com.br:
+      email: gustavo.bassegio@fortics.com.br
+      logged: 0
+      name: Gustavo Bassegio
+      password: '123'
+      permission: Admin
