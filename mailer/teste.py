@@ -24,7 +24,6 @@ def confirmacao(email, resposta,data):
 
 @app.route('/confirmacaoB/<string:email>/<string:resposta>/<string:data>', methods=['GET'])
 def confirmacaob(email, resposta,data):
-    
     inserir_resposta_no_banco(email, resposta,data)
         
     return render_template('index2.html')
