@@ -115,8 +115,7 @@ def inserir_resposta_no_banco(email, resposta,data):
     
 
 
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+app.run(debug=True, host='0.0.0.0')
             
     
 config = yamlconfig()
