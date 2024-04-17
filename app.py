@@ -72,6 +72,7 @@ st.set_page_config(
 
 
 start_flask_app()
+print(start_flask_app)
             
     
 config = yamlconfig()
