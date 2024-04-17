@@ -689,12 +689,12 @@ def enviar_email(destinatario,nomereuniao,data,horainicioform,horasfimform,salas
 
     dataformatada = datetime.datetime.strptime(data_str, "%Y-%m-%d").strftime("%d/%m/%Y")
     
-    public_url = None
-    
-    if public_url == None:
-       
-        public_url = start_ngrok()
-    
+    #public_url = None
+    #
+    #if public_url == None:
+    #   
+    #    public_url = start_ngrok()
+    #
     
     corpo_email = """
     <div style="margin: 0 auto; max-width: 600px; border: 1px solid rgba(0, 0, 0, 0.1); padding: 10px; text-align: center;justify-content: center;">
@@ -726,7 +726,7 @@ def enviar_email(destinatario,nomereuniao,data,horainicioform,horasfimform,salas
     </div>
     <p style="font-size: 12px; text-align: center;">Fortics © 2024 Onboard. Todos os direitos reservados.</p>
 </div>
-""".format(nomereuniao, dataformatada, horainicioform, horasfimform, salas_sem_aspas, organizador, public_url,destinatario,data,public_url, destinatario,data)
+""".format(nomereuniao, dataformatada, horainicioform, horasfimform, salas_sem_aspas, organizador, destinatario,data, destinatario,data)
 
 
 
