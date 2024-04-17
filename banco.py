@@ -726,7 +726,7 @@ def enviar_email(destinatario,nomereuniao,data,horainicioform,horasfimform,salas
     </div>
     <p style="font-size: 12px; text-align: center;">Fortics © 2024 Onboard. Todos os direitos reservados.</p>
 </div>
-""".format(nomereuniao, dataformatada, horainicioform, horasfimform, salas_sem_aspas, organizador, destinatario,data, destinatario,data)
+""".format(nomereuniao, dataformatada, horainicioform, horasfimform, salas_sem_aspas, organizador,data, destinatario,data, data,destinatario,data)
 
 
 
