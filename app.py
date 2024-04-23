@@ -7,13 +7,19 @@ from banco import tip
 
 
 
-
-
-st.cache_data.clear()
-st.cache_resource.clear()
+if 'logout' not in st.session_state:
     
+    st.session_state['logout'] = None
 
-
+if st.session_state['logout'] == True:
+    print("entrou no true")
+    st.cache_data.clear()
+    st.cache_resource.clear()
+    st.session_state.clear()
+    
+    
+    st.session_state['logout'] = None
+    
 def yamlconfig():        
     with open('config.yaml', 'r') as file:
         try:
@@ -65,7 +71,12 @@ def custom_css():
 st.set_page_config(
     page_title="RoomSense - Home",
     page_icon=":calendar:",
-    initial_sidebar_state="expanded")            
+    initial_sidebar_state="expanded")        
+
+#start_flask_app()
+toastmessage()
+
+print (st.session_state)
     
 config = yamlconfig()
 
@@ -89,7 +100,17 @@ if 'name' not in st.session_state:
     
 if 'logout' not in st.session_state:
     
-        st.session_state['logout'] = None
+    st.session_state['logout'] = None
+
+if 'filter' not in st.session_state:
+    
+    st.session_state['filter'] = None
+
+if st.session_state['logout'] == 'True':
+    st.cache_data.clear()
+    st.cache_resource.clear()
+
+    st.session_state['logout'] = 'None'
 
 
 authenticator.login() 
@@ -98,17 +119,13 @@ if st.session_state['authentication_status'] :
     
         menuoption = ['Home', 'Configurações', 'Relatorios']
     
-        if 'filter' not in st.session_state:
+        if 'filter' in st.session_state:
             
             st.session_state['filter'] = tip()
+                
+            if st.session_state['filter'] == 'Admin':
             
-        elif st.session_state['filter'] == 'Admin':
-            
-            menuoption.append('Cadastro')
-            
-            
-            
-        
+                menuoption.append('Cadastro')
             
         custom_css()
         

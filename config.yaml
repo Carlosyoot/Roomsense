@@ -22,3 +22,15 @@ credentials:
       name: Gustavo Bassegio
       password: '123'
       permission: Admin
+    joaopedrobalhan@gmail.com:
+      email: joaopedrobalhan@gmail.com
+      logged: 0
+      name: 'Joaopedrob '
+      password: '123'
+      permission: Admin
+    kauanngt@gmail.com:
+      email: kauanngt@gmail.com
+      logged: 0
+      name: 'Kauanngt '
+      password: '123'
+      permission: Admin

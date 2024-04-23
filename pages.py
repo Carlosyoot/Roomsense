@@ -10,7 +10,8 @@ from markdowncss import *
 import datetime
 import io
 
-def calendarpage():    
+def calendarpage(): 
+    
     
     toastmessage()  
     popovercalendarmarkdown()
@@ -212,40 +213,44 @@ def calendarpage():
 
                         salas_sem_aspas = roomsalas.strip('[]').replace('"', '')
 
+                        if agendarbuttom and  nomereuniao == None or horainicio == None or horafim == None or participantes == None or salas == None:
+                            
+                            st.error("Por favor, preencha todos os dados para o agendamento!")
 
-                        insertmeeting(assunto, data, nomereuniao, comentarios, horainicioform, horasfimform, participantes_sem_aspas, salas_sem_aspas)
+                        else:
+                            insertmeeting(assunto, data, nomereuniao, comentarios, horainicioform, horasfimform, participantes_sem_aspas, salas_sem_aspas)
 
-                        st.success("Reunião agendada com sucesso!")
-                        
-                        time.sleep(1)
+                            st.success("Reunião agendada com sucesso!")
 
-                        for parcipante in parcipantesteste:
+                            time.sleep(1)
 
-
-                            emaildestinatario = enviar(parcipante)
-
-                            alertadestinatario = enviar(parcipante)
-            
-
-                            if  alertadestinatario:
-
-                                organizador = st.session_state.get('name')
-
-                                data_formatada = data.strftime("%d/%m/%Y")
+                            for parcipante in parcipantesteste:
 
 
-                                msg = "O organizador <span style='font-weight: bold; color: blue;'>{}</span> agendou uma reunião com você marcada para <span style='font-weight: bold;'>{}</span> a partir das <span style='font-weight: bold;'>{}</span> até as <span style='font-weight: bold;'>{}</span> na <span style='font-weight: bold;'>{}</span>".format(organizador,data_formatada,horainicioform,horasfimform,salas_sem_aspas)
+                                emaildestinatario = enviar(parcipante)
+
+                                alertadestinatario = enviar(parcipante)
 
 
-                                insertalert(alertadestinatario,msg)
+                                if  alertadestinatario:
 
-                                enviar_email(emaildestinatario,nomereuniao,data,horainicioform,horasfimform,salas_sem_aspas, organizador)
+                                    organizador = st.session_state.get('name')
 
-                            else:
+                                    data_formatada = data.strftime("%d/%m/%Y")
 
-                                print("Endereço de e-mail não encontrado para o usuário:", parcipante)
-                                
-                        st.rerun()
+
+                                    msg = "O organizador <span style='font-weight: bold; color: blue;'>{}</span> agendou uma reunião com você marcada para <span style='font-weight: bold;'>{}</span> a partir das <span style='font-weight: bold;'>{}</span> até as <span style='font-weight: bold;'>{}</span> na <span style='font-weight: bold;'>{}</span>".format(organizador,data_formatada,horainicioform,horasfimform,salas_sem_aspas)
+
+
+                                    insertalert(alertadestinatario,msg)
+
+                                    enviar_email(emaildestinatario,nomereuniao,data,horainicioform,horasfimform,salas_sem_aspas, organizador)
+
+                                else:
+
+                                    print("Endereço de e-mail não encontrado para o usuário:", parcipante)
+
+                            st.rerun()
 
                 elif agendarbuttom and  reuniaorecorrente == True:
 
@@ -266,35 +271,47 @@ def calendarpage():
                         participantes_sem_aspas = participantes.strip('[]').replace('"', '')
 
                         salas_sem_aspas = roomsalas.strip('[]').replace('"', '')
+                        
+                        if agendarbuttom and  nomereuniao == None or horainicio == None or horafim == None or participantes == None or salas == None or datafimrecorrencia == None:
+                            
+                                st.error("Por favor, preencha todos os dados para o agendamento!")
 
-                        for parcipante in parcipantesteste:
+                        else:
 
-
-                            emaildestinatario = enviar(parcipante)
-
-                            alertadestinatario = enviar(parcipante)
-
-                            if emaildestinatario and alertadestinatario:
-
-                                organizador = st.session_state.get('name') 
-
-                                data_formatada = data.strftime("%d/%m/%Y")
+                            for parcipante in parcipantesteste:
 
 
-                                msg = "O organizador <span style='font-weight: bold; color: blue;'>{}</span> agendou uma reunião com você marcada para <span style='font-weight: bold;'>{}</span> a partir das <span style='font-weight: bold;'>{}</span> até as <span style='font-weight: bold;'>{}</span> na <span style='font-weight: bold;'>{}</span>".format(organizador,data_formatada,horainicioform,horasfimform,salas_sem_aspas)
-
-                                insertalert(alertadestinatario, msg)
-
-                                enviar_email(emaildestinatario,nomereuniao,data,horainicioform,horasfimform,salas_sem_aspas,organizador)
-
-                            else:
-
-                                print("Endereço de e-mail não encontrado para o usuário:", parcipante)
 
 
-                        insert_recurring_meetings(assunto, data, datafimrecorrencia, nomereuniao, comentarios, horainicioform, horasfimform, participantes_sem_aspas, salas_sem_aspas, regra_recorrencia)
+                                emaildestinatario = enviar(parcipante)
+
+                                alertadestinatario = enviar(parcipante)
+
+                                if emaildestinatario and alertadestinatario:
+
+                                    organizador = st.session_state.get('name') 
+
+                                    data_formatada = data.strftime("%d/%m/%Y")
+
+
+                                    msg = "O organizador <span style='font-weight: bold; color: blue;'>{}</span> agendou uma reunião com você marcada para <span style='font-weight: bold;'>{}</span> a partir das <span style='font-weight: bold;'>{}</span> até as <span style='font-weight: bold;'>{}</span> na <span style='font-weight: bold;'>{}</span>".format(organizador,data_formatada,horainicioform,horasfimform,salas_sem_aspas)
+
+                                    insertalert(alertadestinatario, msg)
+
+                                    enviar_email(emaildestinatario,nomereuniao,data,horainicioform,horasfimform,salas_sem_aspas,organizador)
+
+                                else:
+
+                                    print("Endereço de e-mail não encontrado para o usuário:", parcipante)
+
+
+                                insert_recurring_meetings(assunto, data, datafimrecorrencia, nomereuniao, comentarios, horainicioform, horasfimform, participantes_sem_aspas, salas_sem_aspas, regra_recorrencia)
     
-        popovercalendarmarkdownleft()          
+
+                    
+
+        popovercalendarmarkdownleft() 
+                 
         with coluna3:
 
             with st.popover("Alterar/Excluir", use_container_width=True):
@@ -316,7 +333,7 @@ def calendarpage():
                 meeting_options = [f"ID: {meeting['Id']} | Nome: {meeting['Nome']} | Participantes: {meeting['Participantes']}" for meeting in meetings]
                 selected_meeting = st.selectbox("Selecione a reunião:", meeting_options, index=None, key="meeting")
 
-                if alterar == True:
+                if alterar == True and excluir == False:
 
                     with coluna:
                         usuarios = getallusers()
@@ -335,6 +352,15 @@ def calendarpage():
                         salasALT = st.multiselect("Selecione as salas existentes", rooms, key="altsalas")
 
                         motivo =  st.text_input("Motivo", key="motivo")
+                        
+                if alterar and excluir == True:
+
+                    st.warning("Selecione apenas uma opção")
+                    
+                if excluir  == False and alterar == False:
+                    
+                    st.warning("Selecione uma opção")
+                
 
 
 
@@ -352,10 +378,11 @@ def calendarpage():
                         meeting_id = int(selected_meeting.split("ID: ")[1].split(" |")[0])
                         
                         nomereuniao = str(selected_meeting.split("Nome: ")[1].split(" |")[0])
+                        
+                        avisoparticipantesalt = selected_meeting.split("Participantes: ")[1].split(" |")[0].split(", ")
 
 
                         data = dataALT
-                        nomereuniaoalt = nomereuniao
                         horasinicioalt = horaalterarbase
                         horasfimalt = horafimalterar
 
@@ -374,21 +401,43 @@ def calendarpage():
                         salasaltsemaspas = salas.strip('[]').replace('"', '')
 
                         motivo = motivo
-
-
-
-                        update_meeting(meeting_id, data, nomereuniao, horainicioformalt, horasfimformalt, participanteslatsemaspas, salasaltsemaspas, motivo)
-
-
-                        st.success("Reunião atualizada com sucesso!")
                         
-                        st.rerun()
+                        print(meeting_id, data,horainicioformalt, horasfimformalt, participanteslatsemaspas, salasaltsemaspas, motivo)
+                        
+                        if not data or not horainicioformalt or not horasfimformalt or not participanteslatsemaspas or not salasaltsemaspas:
+                            
+                            st.warning("Por favor insira oque voce deseja alterar")
+                            
+                        else:
+
+                            for participante in avisoparticipantesalt:
+
+                                alertadestinatario = enviar(participante)
+
+
+
+                                update_meeting(meeting_id, data,horainicioformalt, horasfimformalt, participanteslatsemaspas, salasaltsemaspas, motivo)
+
+                                if alertadestinatario:
+
+                                    organizador = st.session_state["name"]
+
+                                    dataform = data.strftime("%d/%m/%Y")
+
+                                    msg = "O organizador <span style='font-weight: bold; color: blue;'>{}</span> alterou a reunião para <span style='font-weight: bold;'>{}</span> a partir das <span style='font-weight: bold;'>{}</span> até as <span style='font-weight: bold;'>{}</span> na <span style='font-weight: bold;'>{}</span>".format(organizador,dataform,horainicioformalt,horasfimformalt,salasaltsemaspas)   
+
+                                    insertalert(alertadestinatario, msg)
+
+
+                            st.success("Reunião atualizada com sucesso!")
+
+                            st.rerun()
 
                     else:
 
                         st.warning("Selecione uma reunião antes de confirmar a alteração.")
 
-                if agendarbuttom and excluir == True:
+                elif agendarbuttom and excluir == True:
 
                     if selected_meeting:
 
@@ -509,31 +558,37 @@ def calendarpage():
                     
                     salas_sem_aspas = roomsalas.strip('[]').replace('"', '')
                     
-                    insertmeeting(assunto, data, nomereuniao, comentarios, horainicioform, horasfimform, participantes_sem_aspas, salas_sem_aspas)
+                    if agendarbuttom and  nomereuniao == None or horainicio == None or horafim == None or participantes == None or salas == None:
+                            
+                            st.error("Por favor, preencha todos os dados para o agendamento!")
+
+                    else:
                     
-                    st.success("Reunião agendada com sucesso!")
-                    
-                    for parcipante in parcipantesteste:
-                        
-                        emaildestinatario = enviar(parcipante)
-                        
-                        alertadestinatario = enviar(parcipante)
-                        
-                        if  alertadestinatario:
-                            
-                            organizador = st.session_state.get('name')
-                            
-                            data_formatada = data.strftime("%d/%m/%Y")
-                            
-                            msg = "O organizador <span style='font-weight: bold; color: blue;'>{}</span> agendou uma reunião com você marcada para <span style='font-weight: bold;'>{}</span> a partir das <span style='font-weight: bold;'>{}</span> até as <span style='font-weight: bold;'>{}</span> na <span style='font-weight: bold;'>{}</span>".format(organizador,data_formatada,horainicioform,horasfimform,salas_sem_aspas)
-                            
-                            insertalert(alertadestinatario,msg)
-                            
-                            enviar_email(emaildestinatario,nomereuniao,data,horainicioform,horasfimform,salas_sem_aspas)
-                            
-                        else:
-                            
-                            print("Endereço de e-mail não encontrado para o usuário:", parcipante)
+                        insertmeeting(assunto, data, nomereuniao, comentarios, horainicioform, horasfimform, participantes_sem_aspas, salas_sem_aspas)
+
+                        st.success("Reunião agendada com sucesso!")
+
+                        for parcipante in parcipantesteste:
+
+                            emaildestinatario = enviar(parcipante)
+
+                            alertadestinatario = enviar(parcipante)
+
+                            if  alertadestinatario:
+
+                                organizador = st.session_state.get('name')
+
+                                data_formatada = data.strftime("%d/%m/%Y")
+
+                                msg = "O organizador <span style='font-weight: bold; color: blue;'>{}</span> agendou uma reunião com você marcada para <span style='font-weight: bold;'>{}</span> a partir das <span style='font-weight: bold;'>{}</span> até as <span style='font-weight: bold;'>{}</span> na <span style='font-weight: bold;'>{}</span>".format(organizador,data_formatada,horainicioform,horasfimform,salas_sem_aspas)
+
+                                insertalert(alertadestinatario,msg)
+
+                                enviar_email(emaildestinatario,nomereuniao,data,horainicioform,horasfimform,salas_sem_aspas)
+
+                            else:
+
+                                print("Endereço de e-mail não encontrado para o usuário:", parcipante)
                             
             elif agendarbuttom and  reuniaorecorrente == True:
                 
@@ -555,29 +610,35 @@ def calendarpage():
                     
                     salas_sem_aspas = roomsalas.strip('[]').replace('"', '')
                     
-                    for parcipante in parcipantesteste:
-                        
-                        emaildestinatario = enviar(parcipante)
-                        
-                        alertadestinatario = enviar(parcipante)
-                        
-                        if emaildestinatario and alertadestinatario:
+                    if agendarbuttom and  nomereuniao == None or horainicio == None or horafim == None or participantes == None or salas == None:
                             
-                            organizador = st.session_state.get('name') 
-                            
-                            data_formatada = data.strftime("%d/%m/%Y")
-                            
-                            msg = "O organizador <span style='font-weight: bold; color: blue;'>{}</span> agendou uma reunião com você marcada para <span style='font-weight: bold;'>{}</span> a partir das <span style='font-weight: bold;'>{}</span> até as <span style='font-weight: bold;'>{}</span> na <span style='font-weight: bold;'>{}</span>".format(organizador,data_formatada,horainicioform,horasfimform,salas_sem_aspas)
-                            
-                            insertalert(alertadestinatario, msg)
-                            
-                            enviar_email(emaildestinatario,nomereuniao,data,horainicioform,horasfimform,salas_sem_aspas, organizador=st.session_state.get('name'))
-                            
-                        else:
-                            
-                            print("Endereço de e-mail não encontrado para o usuário:", parcipante)
-                            
-                    insert_recurring_meetings(assunto, data, datafimrecorrencia, nomereuniao, comentarios, horainicioform, horasfimform, participantes_sem_aspas, salas_sem_aspas, regra_recorrencia)
+                            st.error("Por favor, preencha todos os dados para o agendamento!")
+
+                    else:
+                    
+                        for parcipante in parcipantesteste:
+
+                            emaildestinatario = enviar(parcipante)
+
+                            alertadestinatario = enviar(parcipante)
+
+                            if emaildestinatario and alertadestinatario:
+
+                                organizador = st.session_state.get('name') 
+
+                                data_formatada = data.strftime("%d/%m/%Y")
+
+                                msg = "O organizador <span style='font-weight: bold; color: blue;'>{}</span> agendou uma reunião com você marcada para <span style='font-weight: bold;'>{}</span> a partir das <span style='font-weight: bold;'>{}</span> até as <span style='font-weight: bold;'>{}</span> na <span style='font-weight: bold;'>{}</span>".format(organizador,data_formatada,horainicioform,horasfimform,salas_sem_aspas)
+
+                                insertalert(alertadestinatario, msg)
+
+                                enviar_email(emaildestinatario,nomereuniao,data,horainicioform,horasfimform,salas_sem_aspas, organizador)
+
+                            else:
+
+                                print("Endereço de e-mail não encontrado para o usuário:", parcipante)
+
+                        insert_recurring_meetings(assunto, data, datafimrecorrencia, nomereuniao, comentarios, horainicioform, horasfimform, participantes_sem_aspas, salas_sem_aspas, regra_recorrencia)
                
     st.write(events)
     
@@ -656,7 +717,7 @@ def cadastropage():
             
             with coluna_2.container(height=60, border=False):
                 
-                with st.popover("Configurações", use_container_width=True):
+                with st.popover("Cadastro Salas", use_container_width=True):
                     
                     popovermarkdown()
                     
@@ -963,8 +1024,7 @@ def relatoriopage():
                     
                     [class="custom-divider"]{
                         
-                        width: 287px!important;
-                        height: 1px!important;
+                        height: 0.9px!important;
                     }
                     
                     
@@ -978,7 +1038,6 @@ def relatoriopage():
                         font-size: 59px!important;
                         
                     }
-                    
                     
                     
                     </style>''', unsafe_allow_html=True)

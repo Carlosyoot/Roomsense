@@ -5,6 +5,7 @@ from dateutil.rrule import rrule, WEEKLY
 from pyngrok import ngrok
 import datetime
 from datetime import date
+import requests
 
 def verificar_lembretes():
     
@@ -689,12 +690,31 @@ def enviar_email(destinatario,nomereuniao,data,horainicioform,horasfimform,salas
 
     dataformatada = datetime.datetime.strptime(data_str, "%Y-%m-%d").strftime("%d/%m/%Y")
     
-    #public_url = None
-    #
-    #if public_url == None:
-    #   
-    #    public_url = start_ngrok()
-    #
+    #public_url = st.session_state.get('ngrok_public_url', None)
+#
+    #if public_url is None:
+    #    
+    #    try:
+    #        
+    #        public_url = start_ngrok()
+    #        st.session_state['ngrok_public_url'] = public_url
+    #        
+    #    except Exception as e:
+    #        
+    #        close_ngrok()
+    #        
+    #        try:
+    #            
+    #            public_url = start_ngrok()
+    #            st.session_state['ngrok_public_url'] = public_url
+    #            
+    #        except Exception as e:
+    #            
+    #            print("Erro ao iniciar o ngrok:", e)
+
+    
+    
+    
     
     corpo_email = """
     <div style="margin: 0 auto; max-width: 600px; border: 1px solid rgba(0, 0, 0, 0.1); padding: 10px; text-align: center;justify-content: center;">
@@ -709,10 +729,10 @@ def enviar_email(destinatario,nomereuniao,data,horainicioform,horasfimform,salas
     </div>
     <div style="display: flex ;justify-content: center; padding-top: 10px; align-items: center;">
         <div style="margin-right: 10px; margin: 0 auto;">
-            <div><a href="{}/confirmacaoA/{}/A/{}" style="background-color: #4CAF50; color: white; padding: 15px 25px; text-align: center; text-decoration: none; display: inline-block; border-radius: 4px;">Confirmar presença</a></div>
+            <div><a href="/confirmacaoA/{}/A/{}" style="background-color: #4CAF50; color: white; padding: 15px 25px; text-align: center; text-decoration: none; display: inline-block; border-radius: 4px;">Confirmar presença</a></div>
         </div>
         <div style="margin-right: 10px; margin: 0 auto;">
-            <div><a href="{}/confirmacaoB/{}/B/{}" style="background-color: #D20103; color: white; padding: 15px 25px; text-align: center; text-decoration: none; display: inline-block; border-radius: 4px;">Não confirmar</a></div>
+            <div><a href="/confirmacaoB/{}/B/{}" style="background-color: #D20103; color: white; padding: 15px 25px; text-align: center; text-decoration: none; display: inline-block; border-radius: 4px;">Não confirmar</a></div>
         </div>
     </div>
     <div dir="ltr" style="padding-top: 10px; position: relative;">
@@ -726,7 +746,7 @@ def enviar_email(destinatario,nomereuniao,data,horainicioform,horasfimform,salas
     </div>
     <p style="font-size: 12px; text-align: center;">Fortics © 2024 Onboard. Todos os direitos reservados.</p>
 </div>
-""".format(nomereuniao, dataformatada, horainicioform, horasfimform, salas_sem_aspas, organizador,data, destinatario,data, data,destinatario,data)
+""".format(nomereuniao, dataformatada, horainicioform, horasfimform, salas_sem_aspas, organizador,destinatario,data,destinatario,data)#public_url, destinatario,data, public_url,destinatario,data)
 
 
 
@@ -764,11 +784,28 @@ def enviar_email_recorrente(destinatario,nomereuniao,data,horainicioform,horasfi
 
     dataformatada = datetime.datetime.strptime(data_str, "%Y-%m-%d").strftime("%d/%m/%Y")
     
-    public_url = None
+    #public_url = st.session_state.get('ngrok_public_url', None)
+#
+    #if public_url is None:
+    #    
+    #    try:
+    #        
+    #        public_url = start_ngrok()
+    #        st.session_state['ngrok_public_url'] = public_url
+    #        
+    #    except Exception as e:
+    #        
+    #        close_ngrok()
+    #        
+    #        try:
+    #            
+    #            public_url = start_ngrok()
+    #            st.session_state['ngrok_public_url'] = public_url
+    #            
+    #        except Exception as e:
+    #            
+    #            print("Erro ao iniciar o ngrok:", e)
     
-    if public_url == None:
-       
-        public_url = start_ngrok()
     
     
     corpo_email = """
@@ -784,10 +821,10 @@ def enviar_email_recorrente(destinatario,nomereuniao,data,horainicioform,horasfi
     </div>
     <div style="display: flex ;justify-content: center; padding-top: 10px; align-items: center;">
         <div style="margin-right: 10px; margin: 0 auto;">
-            <div><a href="{}/confirmacaoA/{}/A/{}" style="background-color: #4CAF50; color: white; padding: 15px 25px; text-align: center; text-decoration: none; display: inline-block; border-radius: 4px;">Confirmar presença</a></div>
+            <div><a href="/confirmacaoA/{}/A/{}" style="background-color: #4CAF50; color: white; padding: 15px 25px; text-align: center; text-decoration: none; display: inline-block; border-radius: 4px;">Confirmar presença</a></div>
         </div>
         <div style="margin-right: 10px; margin: 0 auto;">
-            <div><a href="{}/confirmacaoB/{}/B/{}" style="background-color: #D20103; color: white; padding: 15px 25px; text-align: center; text-decoration: none; display: inline-block; border-radius: 4px;">Não confirmar</a></div>
+            <div><a href="/confirmacaoB/{}/B/{}" style="background-color: #D20103; color: white; padding: 15px 25px; text-align: center; text-decoration: none; display: inline-block; border-radius: 4px;">Não confirmar</a></div>
         </div>
     </div>
     <div dir="ltr" style="padding-top: 10px; position: relative;">
@@ -801,7 +838,7 @@ def enviar_email_recorrente(destinatario,nomereuniao,data,horainicioform,horasfi
     </div>
     <p style="font-size: 12px; text-align: center;">Fortics © 2024 Onboard. Todos os direitos reservados.</p>
 </div>
-""".format(nomereuniao, dataformatada, horainicioform, horasfimform, salas_sem_aspas, organizador, public_url,destinatario,data,public_url, destinatario,data)
+""".format(nomereuniao, dataformatada, horainicioform, horasfimform, salas_sem_aspas, organizador,destinatario,data,destinatario,data) #public_url,destinatario,data,public_url, destinatario,data)
 
 
 
@@ -830,9 +867,24 @@ def enviar_email_recorrente(destinatario,nomereuniao,data,horainicioform,horasfi
 
     
 def start_ngrok():
-    public_url = ngrok.connect(5000).public_url
+
+    if 'public_url' not in st.session_state:
+        
+        public_url = ngrok.connect(5000).public_url
+        
+        st.session_state['public_url'] = public_url
+        
+    else:
+        
+        public_url = st.session_state['public_url']
+        
+        
+    print("URL:", public_url)    
     return public_url
 
+
+def close_ngrok():
+    ngrok.kill()
 
 def requestuser():
     
@@ -1066,34 +1118,38 @@ def get_all_meetings():
     
     return all_meetings
 
-def update_meeting(meeting_id, data, nomereuniao, horasinicio, horasfim, participantes, salas, motivo):
+def update_meeting(meeting_id, data,horasinicio, horasfim, participantes, salas, motivo):
     try:
         with sqlite3.connect('database/meetingdatabase.db') as conn:
             cursor = conn.cursor()
+            
+            
+            if all(value is None or value == "" for value in [horasinicio, horasfim, participantes, salas, motivo]):
+                st.toast("Nenhum campo para atualização foi fornecido.")
+                
+                time.sleep(2)
+                return
 
             update_fields = []  
             update_values = []  
 
    
-            if data is not None:
-                update_fields.append("data=?")
+            if data is not None and data != "":
+                update_fields.append("data=?")  
                 update_values.append(data)
-            if nomereuniao is not None:
-                update_fields.append("nomereuniao=?")
-                update_values.append(nomereuniao)
-            if horasinicio is not None:
+            if horasinicio is not None and horasinicio != "":
                 update_fields.append("HoraStart=?")
                 update_values.append(horasinicio)
-            if horasfim is not None:
+            if horasfim is not None and horasfim != "":
                 update_fields.append("HoraEnd=?")
                 update_values.append(horasfim)
-            if participantes is not None:
+            if participantes is not None and participantes != "":
                 update_fields.append("Participantes=?")
                 update_values.append(participantes)
-            if salas is not None:
+            if salas is not None and salas != "":
                 update_fields.append("Sala=?")
                 update_values.append(salas)
-            if motivo is not None:
+            if motivo is not None and motivo != "":
                 update_fields.append("comentarios=?")
                 update_values.append(motivo)
 
@@ -1198,3 +1254,7 @@ def get_meeting_data_by_id(meeting_id):
         print("Erro ao buscar os dados da reunião:", e)
         return None
 
+@st.cache(ttl=100)
+def obter_publicurl():
+    
+    return start_ngrok()
