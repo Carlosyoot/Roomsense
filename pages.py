@@ -12,7 +12,6 @@ import io
 
 def calendarpage(): 
     
-    
     toastmessage()  
     popovercalendarmarkdown()
         
@@ -315,26 +314,61 @@ def calendarpage():
         with coluna3:
 
             with st.popover("Alterar/Excluir", use_container_width=True):
+                
+                with st.container(height=80,border=True):
+                
+                    st.markdown('''<style>
+                                [data-testid="stRadio"]{
+
+                                    justify-content: center;
+                                    self-align: center;
+                                    margin-left: 13rem;
+                                    text-align: center;
+                                    margin-top: -1.6rem;
+                                    width: 250px!important;
+
+                                }
+                                
+                                [data-testid="stWidgetLabel"][class="st-emotion-cache-ue6h4q e1y5xkzn3"]{
+                                    
+                                    margin-left: 25px;
+                                    font-size: 20px;
+                                    
+                                    
+                                }
+                                
+                            
+                            
+                            
+                            
+                            
+                            </style>
+                            ''', unsafe_allow_html=True)
+                
+                    escolha = st.radio("Selecione uma opção:", ["Alterar", "Excluir"], index=0, key="opcao", horizontal=True)
+                
                 col1, col3 = st.columns(2)
 
                 coluna = col1
                 coluna3 = col3
+                
+                
+                
+                
+                
 
-                with coluna.container(height=60, border=True):
-
-                    alterar = st.checkbox("Alterar", key="alterar")    
-
-                with coluna3.container(height=60, border=True):
-                    excluir = st.checkbox("Excluir", key="excluir")
+  
 
 
+
+            
 
                 meetings = get_all_meetings()
                 meeting_options = [f"ID: {meeting['Id']} | Nome: {meeting['Nome']} | Participantes: {meeting['Participantes']}" for meeting in meetings]
                 selected_meeting = st.selectbox("Selecione a reunião:", meeting_options, index=None, key="meeting")
 
-                if alterar == True and excluir == False:
-
+                if escolha == "Alterar":
+                    
                     with coluna:
                         usuarios = getallusers()
 
@@ -353,24 +387,21 @@ def calendarpage():
 
                         motivo =  st.text_input("Motivo", key="motivo")
                         
-                if alterar and excluir == True:
+                if escolha == None:
 
                     st.warning("Selecione apenas uma opção")
                     
-                if excluir  == False and alterar == False:
-                    
-                    st.warning("Selecione uma opção")
                 
 
 
 
                 agendarbuttom = st.button("Confirmar",key="Confirmar",use_container_width=True,disabled=False)
 
-                if agendarbuttom and alterar == False and excluir == False:
+                if agendarbuttom and escolha == None:
 
                     st.warning("Selecione uma opção") 
 
-                if agendarbuttom and alterar == True:
+                if agendarbuttom and escolha == "Alterar":
 
                     if selected_meeting:
                     
@@ -437,7 +468,7 @@ def calendarpage():
 
                         st.warning("Selecione uma reunião antes de confirmar a alteração.")
 
-                elif agendarbuttom and excluir == True:
+                elif agendarbuttom and escolha == "Excluir":
 
                     if selected_meeting:
 

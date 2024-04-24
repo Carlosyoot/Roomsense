@@ -69,9 +69,10 @@ def custom_css():
             
 
 st.set_page_config(
-    page_title="RoomSense - Home",
+    page_title="RoomSense",
     page_icon=":calendar:",
-    initial_sidebar_state="expanded")        
+    initial_sidebar_state="expanded")   
+     
 
 #start_flask_app()
 toastmessage()
@@ -215,3 +216,5 @@ elif st.session_state['authentication_status'] is False:
     st.toast("Nome de usuário ou senha inválidos,", icon="🆘")
 elif st.session_state['authentication_status'] is None:
     st.warning("Por favor, faca o login.", icon="🚨")
+    
+ 

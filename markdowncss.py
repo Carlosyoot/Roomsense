@@ -6,10 +6,18 @@ import streamlit as st
 def popovermarkdown():
     st.markdown('''
                                 <style>
+                                
+                                    [data-testid="stAppViewBlockContainer"]{
+                                        margin-top: -100px!important;
+                                    }
                                     [data-testid="stPopoverBody"]{
                                         margin-top: -50px;
                                     }
                                 
+                                    [data-testid="stDecoration"]{
+                                        background-image: transparent;
+                                    }
+                                    
                                 
                                 
                                 
@@ -218,6 +226,8 @@ def padraomargin1():
                                 
                             }
                             </style>''',unsafe_allow_html=True)
+    
+    
     
 def calendaroption():
     
