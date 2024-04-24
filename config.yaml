@@ -34,3 +34,9 @@ credentials:
       name: 'Kauanngt '
       password: '123'
       permission: Admin
+    testeadmin@gmail.com:
+      email: testeadmin@gmail.com
+      logged: 0
+      name: 'Testeadmin '
+      password: '123'
+      permission: Admin

@@ -30,6 +30,8 @@ def calendarpage():
     
     dadosmeeting = eventos()
     
+    print (dadosmeeting)
+    
     dadosrecurrentes = eventosrecorrentes()
 
     events = []
@@ -37,7 +39,12 @@ def calendarpage():
     for reuniao in dadosmeeting:
         
         
-        title = f"Reunião sobre: {reuniao[3]}"
+        
+        allinformations = f"{reuniao[3]}\nAssunto: {reuniao[1]}\n{reuniao[4]}"
+        
+        print(allinformations)
+        
+        title = f"Reunião sobre: {allinformations}"
         
         
         
@@ -220,6 +227,8 @@ def calendarpage():
                             insertmeeting(assunto, data, nomereuniao, comentarios, horainicioform, horasfimform, participantes_sem_aspas, salas_sem_aspas)
 
                             st.success("Reunião agendada com sucesso!")
+                            
+                            print("Reunião agendada com sucesso mesmo com email nao existente")
 
                             time.sleep(1)
 
@@ -345,7 +354,7 @@ def calendarpage():
                             </style>
                             ''', unsafe_allow_html=True)
                 
-                    escolha = st.radio("Selecione uma opção:", ["Alterar", "Excluir"], index=0, key="opcao", horizontal=True)
+                    escolha = st.radio("Selecione uma opção:", ["Alterar", "Excluir"], index=None, key="opcao", horizontal=True)
                 
                 col1, col3 = st.columns(2)
 
