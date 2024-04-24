@@ -75,8 +75,6 @@ st.set_page_config(
 
 #start_flask_app()
 toastmessage()
-
-print (st.session_state)
     
 config = yamlconfig()
 
@@ -117,7 +115,7 @@ authenticator.login()
 
 if st.session_state['authentication_status'] :
     
-        menuoption = ['Home', 'Configurações', 'Relatorios']
+        menuoption = ['Inicio', 'Configurações', 'Relatorios']
     
         if 'filter' in st.session_state:
             
@@ -167,7 +165,7 @@ if st.session_state['authentication_status'] :
                             ''', unsafe_allow_html=True)
 
 
-                selected = option_menu("Início", menuoption, 
+                selected = option_menu("Menu", menuoption, 
                                         icons=['house', 'gear', 'list task', 'plus square'], 
                                         menu_icon="cast", 
                                         default_index=0, styles=menu_styles)
@@ -203,7 +201,7 @@ if st.session_state['authentication_status'] :
 
         #seleção de pagina
 
-        if selected == 'Home':
+        if selected == 'Inicio':
             calendarpage()
         elif selected == 'Configurações':
             menuconfig()

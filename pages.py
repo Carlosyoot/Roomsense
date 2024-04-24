@@ -638,8 +638,7 @@ def calendarpage():
 
                                 print("Endereço de e-mail não encontrado para o usuário:", parcipante)
 
-                        insert_recurring_meetings(assunto, data, datafimrecorrencia, nomereuniao, comentarios, horainicioform, horasfimform, participantes_sem_aspas, salas_sem_aspas, regra_recorrencia)
-               
+                        insert_recurring_meetings(assunto, data, datafimrecorrencia, nomereuniao, comentarios, horainicioform, horasfimform, participantes_sem_aspas, salas_sem_aspas, regra_recorrencia)           
     st.write(events)
     
 

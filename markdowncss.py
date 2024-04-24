@@ -223,7 +223,7 @@ def calendaroption():
     
     calendar_options = {
         
-    "locale": "pt-br",
+    "locale": "Pt-Br",
     "slotMinTime": "08:00:00",
     "slotMaxTime": "21:00:00",
     "initialView": "dayGridMonth",
@@ -255,6 +255,7 @@ def calendaroption():
     return calendar_options
 
 
+
 def calendarcss():
     
     custom_css = """
@@ -275,6 +276,27 @@ def calendarcss():
             font-size: 25px;
             color: blue;
         }
+        
+        .fc-next-button{
+            background-color: blue!important;
+        }
+        .fc-prev-button{
+            background-color: blue!important;
+        }
+        .fc-today-button{
+            background-color: blue!important;
+        }
+        
+        .fc-Week-button {
+            background-color: blue;
+            
+        }
+        
+        .fc-dayGridMonth-button {
+            background-color: blue;
+        }
+        
+        
         .fc-timegrid-event{
                             font-size: 13px;
                             font-color: black!important;
