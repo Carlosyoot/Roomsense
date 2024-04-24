@@ -345,7 +345,7 @@ def calendarpage():
                             </style>
                             ''', unsafe_allow_html=True)
                 
-                    escolha = st.radio("Selecione uma opção:", ["Alterar", "Excluir"], index=None, key="opcao", horizontal=True)
+                    escolha = st.radio("Selecione uma opção:", ["Alterar", "Excluir"], index=0, key="opcao", horizontal=True)
                 
                 col1, col3 = st.columns(2)
 
